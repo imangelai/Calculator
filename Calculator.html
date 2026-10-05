@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div class="flex justify-center items-center h-screen">
+
+            <div class="bg-zinc-700 rounded-2xl w-100 h-145 border border-emerald-500 shadow-xl">
+
+                <div class=" flex justify-between mx-5">
+                    <div>
+                        <h1 class="italic text-2xl mt-5 font-semibold text-white">SHARP</h1>
+                        <h1 class="italic text-md text-white">EL-M335</h1>
+                    </div>
+
+                    <div class="w-30 h-10 bg-emerald-300 mt-5 border border-emerald-500"></div>
+                </div>
+
+                <div class="flex justify-center items-center mt-5">
+                    <input v-model="showNumber"
+                        class="bg-black w-95 h-30 rounded-lg border text-6xl text-white text-end px-4" type="text"
+                        placeholder="0">
+                </div>
+
+                <div class="mx-5">
+
+                    <div class="flex justify-center items-center mt-5 gap-3 grid grid-cols-4">
+                        <div @click="showOperator('+')"
+                            class="bg-orange-300 px-4 py-2 rounded-xl border hover:text-white hover:bg-orange-600 cursor-pointer">
+                            <h1 class="text-center text-2xl hover:text-white">+</h1>
+                        </div>
+
+                        <div @click="showOperator('-')"
+                            class="bg-orange-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-orange-600 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white"> - </h1>
+                        </div>
+
+                        <div @click="showOperator('*')"
+                            class="bg-orange-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-orange-600 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white"> x </h1>
+                        </div>
+
+                        <div @click="showOperator('/')"
+                            class="bg-orange-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-orange-600 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white">÷ </h1>
+                        </div>
+
+                    </div>
+
+                    <div class="flex justify-center items-center mt-5 gap-3 grid grid-cols-4">
+                        <div @click="showCal('9')"
+                            class="bg-gray-300 px-4 py-2 rounded-xl border hover:text-white hover:bg-gray-600 cursor-pointer">
+                            <h1 class="text-center text-2xl hover:text-white">9</h1>
+                        </div>
+
+                        <div @click="showCal('8')"
+                            class="bg-gray-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-gray-600 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white"> 8</h1>
+                        </div>
+
+                        <div @click="showCal('7')"
+                            class="bg-gray-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-gray-600 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white"> 7</h1>
+                        </div>
+
+                        <div @click="showCal('6')"
+                            class="bg-gray-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-gray-600 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white"> 6</h1>
+                        </div>
+
+                    </div>
+
+                    <div class="flex justify-center items-center mt-5 gap-3 grid grid-cols-4">
+                        <div @click="showCal('5')"
+                            class="bg-gray-300 px-4 py-2 rounded-xl border hover:text-white hover:bg-gray-600 cursor-pointer">
+                            <h1 class="text-center text-2xl hover:text-white">5</h1>
+                        </div>
+
+                        <div @click="showCal('4')"
+                            class="bg-gray-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-gray-600 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white"> 4</h1>
+                        </div>
+
+                        <div @click="showCal('3')"
+                            class="bg-gray-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-gray-600 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white"> 3 </h1>
+                        </div>
+
+                        <div @click="showCal('2')"
+                            class="bg-gray-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-gray-600 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white"> 2</h1>
+                        </div>
+
+                    </div>
+
+                    <div class="flex justify-center items-center mt-5 gap-3 grid grid-cols-4">
+                        <div @click="showCal('1')"
+                            class="bg-gray-300 px-4 py-2 hover:text-white rounded-xl border hover:bg-gray-600 cursor-pointer">
+                            <h1 class="text-center text-2xl hover:text-white">1</h1>
+                        </div>
+
+                        <div @click="showCal('0')"
+                            class="bg-gray-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-gray-600 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white"> 0</h1>
+                        </div>
+
+                        <div @click="showCal('.')"
+                            class="bg-gray-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-gray-600 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white"> .</h1>
+                        </div>
+
+                        <div @click="onOff"
+                            class="bg-amber-200 px-4 py-1 rounded-xl border hover:text-white hover:bg-yellow-400 cursor-pointer">
+                            <h1 class="text-center text-lg hover:text-white"> on</h1>
+                        </div>
+
+
+                    </div>
+
+                    <div class="flex justify-center items-center mt-5 gap-3 grid grid-cols-2">
+                        <div @click="clearNum"
+                            class="bg-red-400 px-4 py-2 rounded-xl border hover:text-white hover:bg-red-600 cursor-pointer">
+                            <h1 class="text-center text-xl hover:text-white">clear</h1>
+                        </div>
+
+                        <div @click="calculateNum"
+                            class="bg-lime-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-lime-500 cursor-pointer">
+                            <h1 class="text-center text-3xl hover:text-white"> = </h1>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+
+        Vue.createApp({
+            data() {
+                return {
+                    showNumber: '',
+                    currentInput: '',
+
+                    operator: '',
+                    firstNum: 0,
+
+                }
+            },
+            methods: {
+                // INPUT DISPLAY
+                showCal(value) {
+                    this.currentInput += [value];
+                    this.showNumber = this.currentInput;
+
+                },
+
+                // OPERATOR
+                showOperator(op) {
+
+                    if (this.operator === "" && this.currentInput !== "") {
+                        this.firstNum = parseFloat(this.currentInput);
+
+                    } else {
+                        this.calculateNum();
+                    }
+
+                    this.operator = op;
+                    this.currentInput = '';
+                    this.showNumber = this.firstNum;
+                },
+
+                // CLEAR
+                clearNum() {
+                    this.currentInput = '';
+                    this.showNumber = '';
+
+                    this.firstNum = 0;
+                    this.operator = "";
+
+                },
+
+                // RESULT
+                calculateNum() {
+                    let num = parseFloat(this.currentInput);
+
+                    if (isNaN(num)) {
+                        return true;
+                    }
+
+                    if (this.operator === "/" && num === 0) {
+                        this.showNumber = "Error";
+
+                        return false;
+                    }
+
+                    if (num) {
+
+                        switch (this.operator) {
+                            case "+":
+                                this.firstNum = this.firstNum + num;
+
+                                break;
+
+                            case "-":
+                                this.firstNum = this.firstNum - num;
+                                break;
+
+                            case "*":
+                                this.firstNum = num * this.firstNum;
+                                break;
+
+                            case "/":
+                                this.firstNum = this.firstNum / num;
+                                break;
+
+                            default:
+                                this.firstNum = num;
+
+                        }
+                        this.showNumber = this.firstNum;
+                        this.currentInput = '';
+                        return;
+
+                    }
+
+                },
+
+                calculate() {
+                    let success = this.calculateNum();
+                    if (!success) {
+                        return;
+                    }
+                    this.operator = "";
+                },
+
+                onOff() {
+                    this.showNumber = "welcome";
+
+                }
+
+            }
+        }).mount('#app');
+    </script>
+
+</body>
+
+</html>
