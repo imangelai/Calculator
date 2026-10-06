@@ -15,7 +15,7 @@
 
         <div class="flex justify-center items-center h-screen">
 
-            <div class="bg-zinc-700 rounded-2xl w-90 h-133 lg:w-100 lg:h-145 border border-emerald-500 shadow-xl">
+            <div class="bg-zinc-700 rounded-2xl w-80 h-125 lg:w-100 lg:h-145 border border-emerald-500 shadow-xl">
 
                 <div class=" flex justify-between mx-5">
                     <div>
@@ -28,7 +28,7 @@
 
                 <div class="flex justify-center items-center mt-5">
                     <input v-model="showNumber"
-                        class="bg-black w-85 h-20 lg:w-95 lg:h-30 rounded-lg border text-6xl text-white text-end px-4" type="text"
+                        class="bg-black w-70 h-15 lg:w-95 lg:h-30 rounded-lg border text-6xl text-white text-end px-4" type="text"
                         placeholder="0">
                 </div>
 
@@ -129,13 +129,13 @@
 
                     <div class="flex justify-center items-center mt-5 gap-3 grid grid-cols-2">
                         <div @click="clearNum"
-                            class="bg-red-400 px-4 py-2 rounded-xl border hover:text-white hover:bg-red-600 cursor-pointer">
+                            class="bg-red-400 px-2 py-1 lg:px-4 lg:py-2 rounded-xl border hover:text-white hover:bg-red-600 cursor-pointer">
                             <h1 class="text-center text-xl hover:text-white">clear</h1>
                         </div>
 
                         <div @click="calculateNum"
-                            class="bg-lime-300 px-4 py-1 rounded-xl border hover:text-white hover:bg-lime-500 cursor-pointer">
-                            <h1 class="text-center text-3xl hover:text-white"> = </h1>
+                            class="bg-lime-300 px-2 py-1 lg:px-4 lg:py-1 rounded-xl border hover:text-white hover:bg-lime-500 cursor-pointer">
+                            <h1 class="text-center text-xl lg:text-3xl hover:text-white"> = </h1>
                         </div>
 
                     </div>
